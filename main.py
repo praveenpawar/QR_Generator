@@ -1,3 +1,4 @@
+from sys import setrecursionlimit
 from tkinter import *
 class Qr_Generator:
     def __init__(self,root):
@@ -31,7 +32,7 @@ class Qr_Generator:
         text_emp_designation=Entry(emp_Frame,font=("times new roman",15), bg='lightyellow', textvariable=self.var_emp_designation).place(x=200,y=180)
 
         btn_generate=Button(emp_Frame, text="Generate QR Code", command=self.generate, font=('times new roman',18, 'bold'), bg='#2196f3' , fg='white').place(x=80, y=250, width=200, height=30)
-        btn_clear=Button(emp_Frame, text="Clear", font=('times new roman',18, 'bold'), bg='#607d8b' , fg='white').place(x=320, y=250, width=80, height=30)
+        btn_clear=Button(emp_Frame, text="Clear", command=self.clear,font=('times new roman',18, 'bold'), bg='#607d8b' , fg='white').place(x=320, y=250, width=80, height=30)
 
         self.msg="QR code generated sucessfully !!!"
         self.lbl_msg=Label(emp_Frame,text=self.msg,font=("times new roman",15), bg='white', fg='green')
@@ -45,6 +46,15 @@ class Qr_Generator:
 
         self.qr_code=Label(qr_Frame, text='QR Code \nNot available',font=('times new roman',15),bg='#3F51b5',fg='white',bd=1,relief=RIDGE)
         self.qr_code.place(x=35,y=100,width=180,height=180)
+
+    def clear(self):
+        self.var_emp_id.set('')
+        self.var_emp_name.set('')
+        self.var_emp_department.set('')
+        self.var_emp_designation.set('')
+        self.msg=''
+        self.lbl_msg.config(text=self.msg)
+
 
     def generate(self):
         if self.var_emp_id.get()=='' or self.var_emp_name.get()=='' or self.var_emp_department.get()=='' or self.var_emp_designation.get()=='':
