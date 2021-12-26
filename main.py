@@ -34,7 +34,7 @@ class Qr_Generator:
         btn_generate=Button(emp_Frame, text="Generate QR Code", command=self.generate, font=('times new roman',18, 'bold'), bg='#2196f3' , fg='white').place(x=80, y=250, width=200, height=30)
         btn_clear=Button(emp_Frame, text="Clear", command=self.clear,font=('times new roman',18, 'bold'), bg='#607d8b' , fg='white').place(x=320, y=250, width=80, height=30)
 
-        self.msg="QR code generated sucessfully !!!"
+        self.msg=""
         self.lbl_msg=Label(emp_Frame,text=self.msg,font=("times new roman",15), bg='white', fg='green')
         self.lbl_msg.place(x=0,y=310,relwidth=1)
 
