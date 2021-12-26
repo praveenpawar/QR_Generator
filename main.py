@@ -34,7 +34,8 @@ class Qr_Generator:
         btn_clear=Button(emp_Frame, text="Clear", font=('times new roman',18, 'bold'), bg='#607d8b' , fg='white').place(x=320, y=250, width=80, height=30)
 
         self.msg="QR code generated sucessfully !!!"
-        self.lbl_msg=Label(emp_Frame,text=self.msg,font=("times new roman",15), bg='white', fg='green').place(x=0,y=310,relwidth=1)
+        self.lbl_msg=Label(emp_Frame,text=self.msg,font=("times new roman",15), bg='white', fg='green')
+        self.lbl_msg.place(x=0,y=310,relwidth=1)
 
         #=======Employee QR code window==========
         qr_Frame=Frame(self.root, bd=2, relief=RIDGE, bg='white')
@@ -46,8 +47,12 @@ class Qr_Generator:
         self.qr_code.place(x=35,y=100,width=180,height=180)
 
     def generate(self):
-        print(self.var_emp_id.get(), self.var_emp_name.get(), self.var_emp_department.get(), self.var_emp_designation.get())
-
+        if self.var_emp_id.get()=='' or self.var_emp_name.get()=='' or self.var_emp_department.get()=='' or self.var_emp_designation.get()=='':
+            self.msg="All fields are required !!!"
+            self.lbl_msg.config(text=self.msg, fg='red')
+        else:
+            self.msg="QR code generated sucessfully !!!"
+            self.lbl_msg.config(text=self.msg, fg='green')
 
 root=Tk()
 obj = Qr_Generator(root)
