@@ -58,7 +58,7 @@ class Qr_Generator:
         self.var_emp_designation.set('')
         self.msg=''
         self.lbl_msg.config(text=self.msg)
-
+        self.qr_code.config(image='')
 
     def generate(self):
         if self.var_emp_id.get()=='' or self.var_emp_name.get()=='' or self.var_emp_department.get()=='' or self.var_emp_designation.get()=='':
