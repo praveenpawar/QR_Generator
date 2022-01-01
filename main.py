@@ -1,5 +1,9 @@
 from sys import setrecursionlimit
 from tkinter import *
+import qrcode
+from PIL import Image, ImageTk
+from resizeimage import resizeimage
+
 class Qr_Generator:
     def __init__(self,root):
         self.root=root
@@ -61,6 +65,15 @@ class Qr_Generator:
             self.msg="All fields are required !!!"
             self.lbl_msg.config(text=self.msg, fg='red')
         else:
+            qr_data=(f"Employee ID: {self.var_emp_id.get()}\nEmployee Name: {self.var_emp_name.get()}\nDepartment: {self.var_emp_department.get()}\nDesignation: {self.var_emp_designation.get()}")
+            qr_code=qrcode.make(qr_data)
+            #print(qr_code)
+            qr_code=resizeimage.resize_cover(qr_code,[180,180])
+            qr_code.save("Employee_QR/Emp_"+str(self.var_emp_id.get())+'.png')
+            #====== QR Code image update =====
+            self.im=ImageTk.PhotoImage(qr_code)             
+            self.qr_code.config(image=self.im)
+            #====== notification========
             self.msg="QR code generated sucessfully !!!"
             self.lbl_msg.config(text=self.msg, fg='green')
 
